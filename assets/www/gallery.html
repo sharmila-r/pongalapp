@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Gallery</title>
+<meta name="author"
+	content="Sharmila - www.sentiense.in" />
+<meta
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;"
+	name="viewport" />
+<meta name="android-mobile-web-app-capable" content="yes" />
+
+<link href="css/styles.css" type="text/css" rel="stylesheet" />
+<link href="css/photoswipe.css" type="text/css" rel="stylesheet" />
+<link rel="stylesheet" href="master.css" type="text/css" media="screen" title="no title" >
+
+<script type="text/javascript" src="lib/klass.min.js"></script>
+<script type="text/javascript" src="lib/code.photoswipe-3.0.4.min.js"></script>
+
+<script type="text/javascript" charset="utf-8" src="phonegap-0.9.3.js"></script>
+<script type="text/javascript" charset="utf-8" src="wallpaperplugin.js"></script>
+<script type="text/javascript">
+
+		(function(window, Util, PhotoSwipe){
+		
+			document.addEventListener('DOMContentLoaded', function(){
+				
+				var
+					sayHiEl,
+					sayHiClickHandler = function(e){
+						//alert('Hi!');
+					}
+					options = {
+					
+						getToolbar: function(){
+							return '<div class="ps-toolbar-close" style="padding-top: 12px;width:18%">Close</div><div class="ps-toolbar-play" style="padding-top: 12px;width:18%">Play</div><div class="ps-toolbar-previous" style="padding-top: 12px;width:18%">Prev</div><div class="ps-toolbar-next" style="padding-top: 12px;width:18%">Next</div><div class="say-hi" style="padding-top: 12px;width:28%;">WallPaper</div>';
+							// NB. Calling PhotoSwipe.Toolbar.getToolbar() wil return the default toolbar HTML
+						}
+					
+					},
+					instance = PhotoSwipe.attach( window.document.querySelectorAll('#Gallery a'), options );
+					
+					// onShow - store a reference to our "say hi" button
+					instance.addEventHandler(PhotoSwipe.EventTypes.onShow, function(e){
+						sayHiEl = window.document.querySelectorAll('.say-hi')[0];
+					});
+					
+					// onToolbarTap - listen out for when the toolbar is tapped
+					instance.addEventHandler(PhotoSwipe.EventTypes.onToolbarTap, function(e){
+						if (e.toolbarAction === PhotoSwipe.Toolbar.ToolbarAction.none){
+							if (e.tapTarget === sayHiEl || Util.DOM.isChildOf(e.tapTarget, sayHiEl)){
+								//alert('hi!');
+								alert("Selected image will be set as WallPaper!");
+								//var test = " "+this.currentIndex;
+								//alert("test "+test);
+								//alert("caps "+getImageCaption(this.el));
+								//alert("captions test "+ this.settings.getImageSource(this.images[test]));
+								//var caps =Util.coalesce(this.cache.images[test].caption, '\u00A0');
+								
+								//alert("caps "+caps);
+								//alert("Current caption is "+this.currentCaption);
+								//alert("original src test "+this.originalSrc);
+								//alert("src test "+this.src);
+								var source = instance.getCurrentImage().src;
+								//alert("source "+source);
+								window.plugins.wallpapersetting.setWallPaper(source,
+									    function(r){printResult(r)},
+									    function(e){log(e)}
+								    );
+							}
+						}
+					});
+					
+					// onBeforeHide - clean up
+					instance.addEventHandler(PhotoSwipe.EventTypes.onBeforeHide, function(e){
+						sayHiEl = null;
+					});
+					
+					
+			}, false);
+			
+			
+			
+		}(window, window.Code.Util, window.Code.PhotoSwipe));
+
+		 function printResult(successMsg){
+			   alert("Image has been set as WallPaper");
+			 }
+		
+	</script>
+
+</head>
+<body style="background-image: url(images/full/pongal_app_bg.jpg)">
+
+	<div id="MainContent">
+
+		<div class="page-content">
+			<div align="center">
+		<span style="font-weight: bold;">Image Gallery / WallPapers</span><br>
+		</div>
+		</div>
+
+		<ul id="Gallery" class="gallery">
+
+			<li><a href="images/full/001.jpg"><img
+					src="images/thumb/001.jpg" alt="Image 001" /></a></li>
+			<li><a href="images/full/002.jpg"><img
+					src="images/thumb/002.jpg" alt="Image 002" /></a></li>
+			<li><a href="images/full/003.jpg"><img
+					src="images/thumb/003.jpg" alt="Image 003" /></a></li>
+			<li><a href="images/full/004.jpg"><img
+					src="images/thumb/004.jpg" alt="Image 004" /></a></li>
+			<li><a href="images/full/005.jpg"><img
+					src="images/thumb/005.jpg" alt="Image 005" /></a></li>
+			<li><a href="images/full/006.jpg"><img
+					src="images/thumb/006.jpg" alt="Image 006" /></a></li>
+			<li><a href="images/full/007.jpg"><img
+					src="images/thumb/007.jpg" alt="Image 007" /></a></li>
+			<li><a href="images/full/008.jpg"><img
+					src="images/thumb/008.jpg" alt="Image 008" /></a></li>
+			<li><a href="images/full/009.jpg"><img
+					src="images/thumb/009.jpg" alt="Image 009" /></a></li>
+			<li><a href="images/full/010.jpg"><img
+					src="images/thumb/010.jpg" alt="Image 010" /></a></li>
+			<li><a href="images/full/011.jpg"><img
+					src="images/thumb/011.jpg" alt="Image 011" /></a></li>
+			<li><a href="images/full/012.jpg"><img
+					src="images/thumb/012.jpg" alt="Image 012" /></a></li>
+			<li><a href="images/full/013.jpg"><img
+					src="images/thumb/013.jpg" alt="Image 013" /></a></li>
+			<li><a href="images/full/014.jpg"><img
+					src="images/thumb/014.jpg" alt="Image 014" /></a></li>
+			<li><a href="images/full/015.jpg"><img
+					src="images/thumb/015.jpg" alt="Image 015" /></a></li>
+			<li><a href="images/full/016.jpg"><img
+					src="images/thumb/016.jpg" alt="Image 016" /></a></li>
+			<li><a href="images/full/017.jpg"><img
+					src="images/thumb/017.jpg" alt="Image 017" /></a></li>
+			<li><a href="images/full/018.jpg"><img
+					src="images/thumb/018.jpg" alt="Image 018" /></a></li>
+					
+			<li><a href="images/full/019.jpg"><img
+					src="images/thumb/019.jpg" alt="Image 019" /></a></li>
+					<li><a href="images/full/020.jpg"><img
+					src="images/thumb/020.jpg" alt="Image 020" /></a></li>
+					<li><a href="images/full/021.jpg"><img
+					src="images/thumb/021.jpg" alt="Image 021" /></a></li>
+					<li><a href="images/full/022.jpg"><img
+					src="images/thumb/022.jpg" alt="Image 022" /></a></li>
+						<li><a href="images/full/023.jpg"><img
+					src="images/thumb/023.jpg" alt="Image 023" /></a></li>
+
+		</ul>
+
+	</div>
+
+
+
+</body>
+</html>
